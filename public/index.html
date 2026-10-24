@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TinTaly</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="phone">
+
+    <div class="screen active" id="s-login">
+      <div class="content center">
+        <h1 class="title center">Login to your<br>account.</h1>
+        <p class="sub center">Hello, welcome back to Tintaly.<br>Relogin to access your account.</p>
+        <label>Username</label><input id="login-user" placeholder="Your Username">
+        <label>Password</label><input id="login-pass" type="password" placeholder="Your Password">
+        <button class="btn-primary" id="btn-login">Login</button>
+        <div class="error" id="login-err"></div>
+        <button class="btn-link" data-goto="s-create">Don't Have an Account?</button>
+      </div>
+    </div>
+
+    <div class="screen" id="s-create">
+      <div class="content">
+        <h1 class="title center">Create your<br>account.</h1>
+        <p class="sub center">Hello, welcome to Tintaly.<br>Create an account to start</p>
+        <label>Username</label><input id="c-user" placeholder="Your Username">
+        <label>E-mail</label><input id="c-email" placeholder="Example@gmail.com">
+        <label>Password</label><input id="c-pass" type="password" placeholder="Your Password">
+        <label>Confirm Password</label><input id="c-pass2" type="password" placeholder="Re-enter Your Password">
+        <label>Store Name</label><input id="c-store" placeholder="Your Store Name">
+        <div class="error" id="create-err"></div>
+        <button class="btn-primary" id="btn-create">Create</button>
+        <button class="btn-link" data-goto="s-login">Already Have an Account?</button>
+      </div>
+    </div>
+
+    <div class="screen" id="s-dashboard">
+      <button class="logout" id="btn-logout">Logout</button>
+      <div class="content">
+        <p class="sub">Good Day !</p>
+        <div class="storeName" id="d-store">Store Name</div>
+        <div class="card">
+          <label>Total customer utang</label>
+          <div class="big-red" id="d-total">₱0</div>
+          <div class="small" id="d-active">0 Active customer</div>
+        </div>
+        <div id="d-list"></div>
+      </div>
+      <nav id="nav-dashboard"></nav>
+    </div>
+
+    <div class="screen" id="s-customers">
+      <div class="content">
+        <p class="sub">Customers !</p>
+        <div class="storeName" id="cu-store">Store Name</div>
+        <input id="cu-search" placeholder="Search for Customer">
+        <div id="cu-list"></div>
+      </div>
+      <nav id="nav-customers"></nav>
+    </div>
+
+    <div class="screen" id="s-addcustomer">
+      <div class="content">
+        <button class="back" data-goto="s-dashboard">&#8592; Back To Dashboard</button>
+        <div class="card">
+          <label>Customer</label><input id="ac-name" placeholder="Your Customer Name">
+          <label>Number</label><input id="ac-number" placeholder="11-digit number (09xxxxxxxxx)" maxlength="11" inputmode="numeric">
+          <label>Items (optional starting purchase)</label>
+          <div id="ac-items"></div>
+          <button class="btn-link left" id="ac-additem">+ Add another item</button>
+          <div class="row flat"><b>Total Amount</b><span class="money-green" id="ac-total">₱0.00</span></div>
+        </div>
+        <div class="error" id="ac-err"></div>
+        <button class="btn-primary" id="btn-addcustomer">Add Customer</button>
+      </div>
+    </div>
+
+    <div class="screen" id="s-products">
+      <div class="content">
+        <p class="sub">Products !</p>
+        <div class="storeName" id="p-store">Store Name</div>
+        <div class="chips" id="p-chips"></div>
+        <div id="p-list"></div>
+      </div>
+      <button class="fab" data-goto="s-addproduct">+</button>
+      <nav id="nav-products"></nav>
+    </div>
+
+    <div class="screen" id="s-addproduct">
+      <div class="content">
+        <button class="back" data-goto="s-products">&#8592; Back To Products</button>
+        <label>Product Name</label><input id="ap-name" placeholder="Your Product Name">
+        <label>Category</label><select id="ap-cat"></select>
+        <label>Price</label><input id="ap-price" placeholder="Product Price">
+        <div class="error" id="ap-err"></div>
+        <button class="btn-primary" id="btn-addproduct">Save</button>
+      </div>
+    </div>
+
+    <div class="screen" id="s-detail">
+      <div class="content">
+        <button class="back" data-goto="s-customers">&#8592; Back To Customers</button>
+        <div class="card">
+          <div class="name-lg" id="det-name">Name</div>
+          <label>Current utang</label>
+          <div class="big-red" id="det-balance">₱0.00</div>
+        </div>
+        <div class="btn-pair">
+          <button class="btn-outline" id="btn-openpurchase1">Add purchase</button>
+          <button class="btn-primary" id="btn-openpurchase2">Add payment</button>
+        </div>
+        <p class="sub">History</p>
+        <div id="det-history"></div>
+      </div>
+    </div>
+
+    <div class="screen" id="s-purchase">
+      <div class="content">
+        <button class="back" data-goto="s-customers">&#8592; Back To Customers</button>
+        <p class="bold">Paying Customer?</p>
+        <input id="pp-amount" class="amount-input" placeholder="Enter an amount here">
+        <hr>
+        <p class="bold">Add another utang</p>
+        <label>Items</label>
+        <div class="card">
+          <div id="pp-items"></div>
+          <button class="btn-link left" id="pp-additem">+ Add another item</button>
+          <div class="row flat"><b>Total Amount</b><span class="money-green" id="pp-total">₱0.00</span></div>
+        </div>
+        <div class="error" id="pp-err"></div>
+        <div class="btn-pair">
+          <button class="btn-outline" id="btn-dopurchase">Add purchase</button>
+          <button class="btn-primary" id="btn-dopayment">Add payment</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="s-summary">
+      <div class="content">
+        <p class="sub">Summary !</p>
+        <div class="storeName" id="sm-store">Store Name</div>
+        <div class="toggles" id="sm-toggles"></div>
+        <div class="two-cards">
+          <div class="card"><label>Total Unpaid</label>
+            <div class="mid-red" id="sm-unpaid">₱0</div>
+          </div>
+          <div class="card"><label>Total Paid</label>
+            <div class="mid-green" id="sm-paid">₱0</div>
+          </div>
+        </div>
+        <div id="sm-list"></div>
+      </div>
+      <nav id="nav-summary"></nav>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
